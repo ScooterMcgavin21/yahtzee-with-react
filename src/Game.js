@@ -40,6 +40,7 @@ class Game extends Component {
     };
     this.roll = this.roll.bind(this);
     this.doScore = this.doScore.bind(this);
+    this.toggleLocked = this.toggleLocked.bind(this);
   }
   // takes random numbers and generates them for unlocked dice, updates state, tracks rollsLeft
   // called by button 
@@ -56,12 +57,13 @@ class Game extends Component {
 
   // gets passed down to Dice component under prop handleClick > 2nd pass down to each Die Component 
   toggleLocked(idx) {
+    //console.log(idx);
     // toggle whether idx is in locked or not
     this.setState(st => ({
-      locked: [
-        ...st.locked.slice(0, idx),
-        !st.locked[idx],
-        ...st.locked.slice(idx + 1)
+      locked: [                     // take old version of locked
+        ...st.locked.slice(0, idx), // keep everything the same from before that index
+        !st.locked[idx],            // at that index, flip it from true to false
+        ...st.locked.slice(idx + 1) // keep the rest of the array the same, updating what the index is
       ]
     }));
   }
@@ -82,7 +84,6 @@ class Game extends Component {
       <div className='Game'>
         <header className='Game-header'>
           <h1 className='App-title'>Yahtzee!</h1>
-
           <section className='Game-dice-section'>
             <Dice
               dice={this.state.dice}
