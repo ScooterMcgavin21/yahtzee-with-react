@@ -1,6 +1,6 @@
 # yahtzee-with-react
 
-## The Game:
+### The Game:
 
 Yahtzee is a chance-and-strategy dice rolling game. A game is played over 13 rounds.
 
@@ -10,7 +10,7 @@ Each round, they must assign their dice to any unclaimed scoring category. Each 
 
 After 13 rounds, the game is over, and the player’s score is the total of each scoring category.
 
-## Scoring Categories
+**Scoring Categories**
 
 | Category       | Description                                                    | Example Score  |
 | -------------- | -------------------------------------------------------------- | -------------- |

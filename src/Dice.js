@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import Die from './Die';
 import './Dice.css';
-
+/** Props:
+ *        - dice
+ *        - toggleLocked()
+ *        - locked
+ */
+// passing down toggleLocked(prop-handleClick) to each Die
 class Dice extends Component {
   render() {
     return <div className="Dice">

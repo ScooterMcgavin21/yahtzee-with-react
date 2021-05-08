@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import './RuleRow.css'
 
+/** Props:
+ *        - doScore()
+ *        - name
+ *        - score
+ */
+
 class RuleRow extends Component {
   render() {
     return (

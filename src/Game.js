@@ -5,7 +5,16 @@ import "./Game.css";
 
 const NUM_DICE = 5;
 const NUM_ROLLS = 3;
-
+/** STATE:
+ *        - dice
+ *        - locked             <------------------------------------------
+ *        - scores             <---------------------------------------- |
+ *        - rollsLeft                                                  | |
+ *///                                                                  | |
+/** METHODS                                                            | |
+ *        -toggleLocked --> pass to Dice comp. --> pass to Die     --> | update STATE (locked)
+ *        -doScores     --> pass to ScoreTable --> pass to RuleRow --> update STATE (scores)
+ */
 class Game extends Component {
   constructor(props) {
     super(props);
@@ -32,7 +41,8 @@ class Game extends Component {
     this.roll = this.roll.bind(this);
     this.doScore = this.doScore.bind(this);
   }
-
+  // takes random numbers and generates them for unlocked dice, updates state, tracks rollsLeft
+  // called by button 
   roll(evt) {
     // roll dice whose indexes are in reroll
     this.setState(st => ({
@@ -44,6 +54,7 @@ class Game extends Component {
     }));
   }
 
+  // gets passed down to Dice component under prop handleClick > 2nd pass down to each Die Component 
   toggleLocked(idx) {
     // toggle whether idx is in locked or not
     this.setState(st => ({
@@ -55,6 +66,7 @@ class Game extends Component {
     }));
   }
 
+  // pass down to scoreTable > scoreTable passes down as prop to RuleRow where doScore is finally called 
   doScore(rulename, ruleFn) {
     // evaluate this ruleFn with the dice and score this rulename
     this.setState(st => ({

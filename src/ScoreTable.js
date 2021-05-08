@@ -3,6 +3,10 @@ import RuleRow from './RuleRow';
 import './ScoreTable.css';
 import { ones, twos, threes, fours, fives, sixes, threeOfKind, fourOfKind, fullHouse, smallStraight, largeStraight, yahtzee, chance } from './Rules';
 
+/** Props:
+ *        - doScore()
+ *        - scores {}
+ */
 
 class ScoreTable extends Component {
 
