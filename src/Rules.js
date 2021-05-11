@@ -56,15 +56,23 @@ class SumDistro extends Rule {
 }
 
 /** Check if full house (3-of-kind and 2-of-kind) */
-
-class FullHouse {
-  // TODO
+// [3,3,3,2,2]
+class FullHouse extends Rule {
+  evalRoll = dice => {
+    const d = new Set(this.freq(dice));
+    return d.size === 2 && (d.has(2) && d.has(3)) ? this.score : 0;
+  };
 }
 
 /** Check for small straights. */
+// [1,2,3,4] || [2,3,4,5] || [3,4,5,6]
+class SmallStraight extends Rule {
+  evalRoll = dice => {
+    const d = new Set(dice);
 
-class SmallStraight {
-  // TODO
+    // small straight 4 dice (!1 && !2) == [3,4,5,6]      (!1 && !6) == [2,3,4,5]    (!5 && !6) == [1,2,3,4]
+    return d.size === 4 && ((!d.has(1) && !d.has(2)) || (!d.has(1) && !d.has(6)) || (!d.has(5) && !d.has(6))) ? this.score : 0;
+  };
 }
 
 /** Check for large straights. */
@@ -100,16 +108,16 @@ const threeOfKind = new SumDistro({ count: 3 });
 const fourOfKind = new SumDistro({ count: 4 });
 
 // full house scores as flat 25
-const fullHouse = "TODO";
+const fullHouse = new FullHouse({ score: 25 });
 
 // small/large straights score as 30/40
-const smallStraight = "TODO";
+const smallStraight = new SmallStraight({ score: 30 });
 const largeStraight = new LargeStraight({ score: 40 });
 
 // yahtzee scores as 50
 const yahtzee = new Yahtzee({ score: 50 });
 
-// for chance, can view as some of all dice, requiring at least 0 of a kind
+// for chance, can view as sum of all dice, requiring at least 0 of a kind
 const chance = new SumDistro({ count: 0 });
 
 export {
