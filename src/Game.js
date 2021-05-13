@@ -73,12 +73,15 @@ class Game extends Component {
   // pass down to scoreTable > scoreTable passes down as prop to RuleRow where doScore is finally called 
   doScore(rulename, ruleFn) {
     // evaluate this ruleFn with the dice and score this rulename
-    this.setState(st => ({
-      scores: { ...st.scores, [rulename]: ruleFn(this.state.dice) },
-      rollsLeft: NUM_ROLLS,
-      locked: Array(NUM_DICE).fill(false)
-    }));
-    this.roll();
+    // allow update to the score card if and only if the value has not already been set, to prevent overriding scores.
+    if (this.state.scores[rulename] === undefined) {
+      this.setState(st => ({
+        scores: { ...st.scores, [rulename]: ruleFn(this.state.dice) },
+        rollsLeft: NUM_ROLLS,
+        locked: Array(NUM_DICE).fill(false)
+      }));
+      this.roll();
+    }
   }
 
   render() {
