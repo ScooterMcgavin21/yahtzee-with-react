@@ -59,13 +59,15 @@ class Game extends Component {
   toggleLocked(idx) {
     //console.log(idx);
     // toggle whether idx is in locked or not
-    this.setState(st => ({
-      locked: [                     // take old version of locked
-        ...st.locked.slice(0, idx), // keep everything the same from before that index
-        !st.locked[idx],            // at that index, flip it from true to false
-        ...st.locked.slice(idx + 1) // keep the rest of the array the same, updating what the index is
-      ]
-    }));
+    if (this.state.rollsLeft > 0) {
+      this.setState(st => ({
+        locked: [                     // take old version of locked
+          ...st.locked.slice(0, idx), // keep everything the same from before that index
+          !st.locked[idx],            // at that index, flip it from true to false
+          ...st.locked.slice(idx + 1) // keep the rest of the array the same, updating what the index is
+        ]
+      }));
+    }
   }
 
   // pass down to scoreTable > scoreTable passes down as prop to RuleRow where doScore is finally called 
