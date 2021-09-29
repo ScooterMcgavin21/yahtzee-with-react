@@ -1,5 +1,9 @@
 # yahtzee-with-react
-
+<p align="center">
+  <b>Preview Yahtzee Game:</b><br>
+  <a href="https://frosty-pare-d22205.netlify.app/">Click Here</a> 
+  <br><br>
+</p>
 ### The Game:
 
 Yahtzee is a chance-and-strategy dice rolling game. A game is played over 13 rounds.
