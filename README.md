@@ -3,6 +3,7 @@
   <b>Preview Yahtzee Game:</b><br>
   <a href="https://frosty-pare-d22205.netlify.app/">Click Here</a> 
   <br><br>
+  <img src="docs/Yahtzee.png">
 </p>
 ### The Game:
 
